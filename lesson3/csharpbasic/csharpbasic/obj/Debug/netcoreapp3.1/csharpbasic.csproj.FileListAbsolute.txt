@@ -1,0 +1,14 @@
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson3\csharpbasic\csharpbasic\bin\Debug\netcoreapp3.1\csharpbasic.exe
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson3\csharpbasic\csharpbasic\bin\Debug\netcoreapp3.1\csharpbasic.deps.json
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson3\csharpbasic\csharpbasic\bin\Debug\netcoreapp3.1\csharpbasic.runtimeconfig.json
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson3\csharpbasic\csharpbasic\bin\Debug\netcoreapp3.1\csharpbasic.runtimeconfig.dev.json
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson3\csharpbasic\csharpbasic\bin\Debug\netcoreapp3.1\csharpbasic.dll
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson3\csharpbasic\csharpbasic\bin\Debug\netcoreapp3.1\csharpbasic.pdb
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson3\csharpbasic\csharpbasic\obj\Debug\netcoreapp3.1\csharpbasic.csproj.AssemblyReference.cache
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson3\csharpbasic\csharpbasic\obj\Debug\netcoreapp3.1\csharpbasic.GeneratedMSBuildEditorConfig.editorconfig
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson3\csharpbasic\csharpbasic\obj\Debug\netcoreapp3.1\csharpbasic.AssemblyInfoInputs.cache
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson3\csharpbasic\csharpbasic\obj\Debug\netcoreapp3.1\csharpbasic.AssemblyInfo.cs
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson3\csharpbasic\csharpbasic\obj\Debug\netcoreapp3.1\csharpbasic.csproj.CoreCompileInputs.cache
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson3\csharpbasic\csharpbasic\obj\Debug\netcoreapp3.1\csharpbasic.dll
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson3\csharpbasic\csharpbasic\obj\Debug\netcoreapp3.1\csharpbasic.pdb
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson3\csharpbasic\csharpbasic\obj\Debug\netcoreapp3.1\csharpbasic.genruntimeconfig.cache
