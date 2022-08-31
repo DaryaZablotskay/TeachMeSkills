@@ -6,19 +6,27 @@ namespace calculator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Which operationdo you want to use?");
+
+            Operation();
+
+            Console.WriteLine("Do you want to continue?");
+            string answer = Console.ReadLine();
+
+           while (answer=="yes")
+            {
+                Operation();
+                Console.WriteLine("Do you want to continue?");
+                answer = Console.ReadLine();
+            }
+
+        }
+        static void Operation()
+        {
+            Console.WriteLine("Which operation do you want to use?");
             string nameOperation = Console.ReadLine();
             Console.WriteLine("Enter two numbers");
             int a = Convert.ToInt32(Console.ReadLine());
             int b = Convert.ToInt32(Console.ReadLine());
-
-            Operation(nameOperation, a, b);
-
-
-           
-        }
-        static void Operation(string nameOperation, int a, int b)
-        {
             switch (nameOperation)
             {
                 case "+":
@@ -33,6 +41,8 @@ namespace calculator
                 case "*":
                     Console.WriteLine($"c={a}*{b}={a * b}");
                     break;
+
+                    // % - остаток от деления
                 case "%":
                     Console.WriteLine($"c={a}%{b}={a % b}");
                     break;
