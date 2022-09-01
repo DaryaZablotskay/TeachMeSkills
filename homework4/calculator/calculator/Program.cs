@@ -6,21 +6,26 @@ namespace calculator
     {
         static void Main(string[] args)
         {
+            Repeat();
+        }
 
-            Operation();
-
+        static string DialogWithUser()
+        {
             Console.WriteLine("Do you want to continue?");
             string answer = Console.ReadLine();
+            return answer;
+        }
+        static void Repeat()
+        {
+            string answer=DialogWithUser();
 
-           while (answer=="yes")
+            while (answer == "yes")
             {
-                Operation();
+                FinalRezult();
                 Console.WriteLine("Do you want to continue?");
                 answer = Console.ReadLine();
             }
-
         }
-
         static void Plus(int a, int b)
         {
             Console.WriteLine($"c={a}+{b}={a+b}");
@@ -79,24 +84,25 @@ namespace calculator
        
         static int Param()
         {
-            Console.WriteLine("Enter two numbers");
+            Console.WriteLine("Enter number");
             int peremen = Convert.ToInt32(Console.ReadLine());
             return peremen;
 
         }
-        static void Operation()
+        static string NameOfOperation()
         {
-
             Console.WriteLine("Which operation do you want to use?");
-            string nameOperation = Console.ReadLine();
+            string nameOfOperation = Console.ReadLine();
+            return nameOfOperation;
+        }
+
+        static void FinalRezult()
+        {
+            string nameOperation = NameOfOperation();
+
             int a = Param();
             int b = Param();
 
-
-           /* Console.WriteLine("Enter two numbers");
-            int a = Convert.ToInt32(Console.ReadLine());
-            int b = Convert.ToInt32(Console.ReadLine());
-           */
             switch (nameOperation)
             {
                 case "+":
