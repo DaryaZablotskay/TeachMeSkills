@@ -1,0 +1,14 @@
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson5\tasks\tasks\bin\Debug\netcoreapp3.1\tasks.exe
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson5\tasks\tasks\bin\Debug\netcoreapp3.1\tasks.deps.json
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson5\tasks\tasks\bin\Debug\netcoreapp3.1\tasks.runtimeconfig.json
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson5\tasks\tasks\bin\Debug\netcoreapp3.1\tasks.runtimeconfig.dev.json
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson5\tasks\tasks\bin\Debug\netcoreapp3.1\tasks.dll
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson5\tasks\tasks\bin\Debug\netcoreapp3.1\tasks.pdb
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson5\tasks\tasks\obj\Debug\netcoreapp3.1\tasks.csproj.AssemblyReference.cache
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson5\tasks\tasks\obj\Debug\netcoreapp3.1\tasks.GeneratedMSBuildEditorConfig.editorconfig
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson5\tasks\tasks\obj\Debug\netcoreapp3.1\tasks.AssemblyInfoInputs.cache
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson5\tasks\tasks\obj\Debug\netcoreapp3.1\tasks.AssemblyInfo.cs
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson5\tasks\tasks\obj\Debug\netcoreapp3.1\tasks.csproj.CoreCompileInputs.cache
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson5\tasks\tasks\obj\Debug\netcoreapp3.1\tasks.dll
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson5\tasks\tasks\obj\Debug\netcoreapp3.1\tasks.pdb
+D:\TeachMeSkills\TeachMeSkillls\TeachMeSkills\lesson5\tasks\tasks\obj\Debug\netcoreapp3.1\tasks.genruntimeconfig.cache
