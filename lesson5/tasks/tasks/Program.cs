@@ -6,7 +6,7 @@ namespace tasks
     {
         static void Main(string[] args)
         {
-            Problem1.Solve();
+            Problem2.Solve();
         }
     }
 }
