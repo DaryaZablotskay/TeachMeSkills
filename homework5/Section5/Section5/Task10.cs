@@ -4,28 +4,28 @@ using System.Text;
 
 namespace Section5
 {
-    static class Task3
+    static class Task10
     {
         public static void Solve()
         {
-            int n = EnterNumber();
-            Sum(n);
+            int row = EnterNumber();
+            TriangleNumber(row);
         }
         static int EnterNumber()
         {
             Console.WriteLine("Enter number");
             return Convert.ToInt32(Console.ReadLine());
         }
-        static void Sum(int n)
+        static void TriangleNumber(int row)
         {
-            int sum = 0;
-            for (int i = 1; i <= n; i++)
+            for(int i=1; i<=row; i++)
             {
-                Console.Write($"{i} ");
-                sum += i;
+                for(int j=1; j<=i; j++)
+                {
+                    Console.Write(j);
+                }
+                Console.WriteLine();
             }
-            Console.WriteLine();
-            Console.WriteLine($"sum = {sum}");
         }
     }
 }

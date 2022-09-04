@@ -15,13 +15,15 @@ namespace Section5
         {
             int a;
             int sum = 0;
+            double aver;
             for(int i=1; i<=n; i++)
             {
                 a = Convert.ToInt32(Console.ReadLine());
                 sum += a;
             }
+            aver = sum / n;
             Console.WriteLine($"sum is {sum}");
-            Console.WriteLine($"average is {sum / n}");
+            Console.WriteLine($"average is {aver}");
         }
     }
 }

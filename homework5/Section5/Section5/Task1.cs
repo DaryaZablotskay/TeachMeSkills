@@ -15,8 +15,9 @@ namespace Section5
         {
             for (int i=1; i<=n; i++)
             {
-                Console.WriteLine(i);
+                Console.Write($"{i} ");
             }
+            Console.WriteLine();
         }
     }
 }

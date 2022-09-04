@@ -16,9 +16,10 @@ namespace Section5
             int sum=0;
             for (int i = 1; i <= n; i++)
             {
-                Console.WriteLine(i);
+                Console.Write($"{i} ");
                 sum += i;
             }
+            Console.WriteLine();
             Console.WriteLine($"sum = {sum}");
         }
     }
