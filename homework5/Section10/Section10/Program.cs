@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Section9
+namespace Section10
 {
     class Program
     {
@@ -12,8 +12,10 @@ namespace Section9
             //Task2.Solve();
             //Console.WriteLine("---------------TASK 3---------------");
             //Task3.Solve();
-            //Console.WriteLine("---------------TASK 6---------------");
-            //Task6.Solve();
+            //Console.WriteLine("---------------TASK 4---------------");
+            //Task4.Solve();
+            //Console.WriteLine("---------------TASK 5---------------");
+            //Task5.Solve();
             //Console.WriteLine("---------------TASK 7---------------");
             //Task7.Solve();
             //Console.WriteLine("---------------TASK 8---------------");
@@ -21,11 +23,11 @@ namespace Section9
             //Console.WriteLine("---------------TASK 9---------------");
             //Task9.Solve();
             //Console.WriteLine("---------------TASK 10---------------");
-            //Task10.Solve();
+            Task10.Solve();
             //Console.WriteLine("---------------TASK 11---------------");
             //Task11.Solve();
             //Console.WriteLine("---------------TASK 12---------------");
-            Task12.Solve();
+            //Task12.Solve();
         }
     }
 }
