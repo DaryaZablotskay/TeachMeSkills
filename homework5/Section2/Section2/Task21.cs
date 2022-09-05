@@ -8,6 +8,7 @@ namespace Section2
     {
         public static void Solve()
         {
+            Console.WriteLine("check diapazon 20...30");
             int a = EnterNumber();
             int b = EnterNumber();
             MaxDiapozon(a, b);

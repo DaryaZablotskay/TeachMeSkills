@@ -14,7 +14,7 @@ namespace Section2
         }
         static int EnterNumber()
         {
-            Console.WriteLine("Enter number");
+            Console.WriteLine("Enter small number");
             return Convert.ToInt32(Console.ReadLine());
         }
         static void CheckNumber(int a, int b)

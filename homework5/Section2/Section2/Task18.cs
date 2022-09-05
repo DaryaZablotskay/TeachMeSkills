@@ -8,6 +8,7 @@ namespace Section2
     {
         public static void Solve()
         {
+            Console.WriteLine("fint max");
             int a = EnterNumber();
             int b = EnterNumber();
             int c = EnterNumber();

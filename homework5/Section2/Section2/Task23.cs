@@ -8,6 +8,7 @@ namespace Section2
     {
         public static void Solve()
         {
+            Console.WriteLine("check what number have the same last digit.");
             int a = EnterNumber();
             int b = EnterNumber();
             SameLastDigit(a, b);

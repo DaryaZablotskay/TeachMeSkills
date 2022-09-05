@@ -8,6 +8,7 @@ namespace Section2
     {
         public static void Solve()
         {
+            Console.WriteLine("check diapaxon 40...50 or 50...60");
             int a = EnterNumber();
             int b = EnterNumber();
             CheckDiapozon(a, b);

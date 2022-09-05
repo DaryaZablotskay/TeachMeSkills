@@ -8,6 +8,7 @@ namespace Section2
     {
         public static void Solve()
         {
+            Console.WriteLine("check diapazon 100...200");
             int a = EnterNumber();
             int b = EnterNumber();
             CheckDiapozon(a, b);

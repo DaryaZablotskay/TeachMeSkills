@@ -14,7 +14,7 @@ namespace Section5
         }
         static int EnterNumber()
         {
-            Console.WriteLine("Input upto the table number starting from 1 : 8");
+            Console.WriteLine("Input upto the table number starting from 1 : n");
             return Convert.ToInt32(Console.ReadLine());
         }
         static void MultiplicationTable(int col, int row)

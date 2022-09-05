@@ -21,7 +21,7 @@ namespace Section5
                 a = Convert.ToInt32(Console.ReadLine());
                 sum += a;
             }
-            aver = sum / n;
+            aver = (double)sum / n;
             Console.WriteLine($"sum is {sum}");
             Console.WriteLine($"average is {aver}");
         }

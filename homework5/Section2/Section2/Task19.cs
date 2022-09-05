@@ -8,6 +8,7 @@ namespace Section2
     {
         public static void Solve()
         {
+            Console.WriteLine("check which number nearest to the value 100");
             int a = EnterNumber();
             int b = EnterNumber();
             CloserToHundred(a, b);
