@@ -13,7 +13,7 @@ namespace Section9
         }
         static int EnterNumber()
         {
-            Console.WriteLine("Enter a number");
+            Console.WriteLine("Enter a number for sum individual digits");
             return Convert.ToInt32(Console.ReadLine());
         }
         static void SumIndividualDigits(int a)

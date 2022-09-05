@@ -14,7 +14,7 @@ namespace Section9
         }
         static int EnterNumber()
         {
-            Console.WriteLine("Enter a number");
+            Console.WriteLine("Enter a number for sum");
             return Convert.ToInt32(Console.ReadLine());
         }
         static void Sum(int a, int b)

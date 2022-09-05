@@ -14,7 +14,7 @@ namespace Section9
         }
         static int EnterNumber()
         {
-            Console.WriteLine("Enter a number");
+            Console.WriteLine("Enter a number for swap numbers");
             return Convert.ToInt32(Console.ReadLine());
         }
         static void SwapNumber(int a, int b)

@@ -14,7 +14,7 @@ namespace Section9
         }
         static int EnterNumber()
         {
-            Console.WriteLine("Enter a number");
+            Console.WriteLine("Enter a number for Fibonachi");
             return Convert.ToInt32(Console.ReadLine());
         }
         static int Fibonachi(int n)

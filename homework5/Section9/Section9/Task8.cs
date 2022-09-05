@@ -9,7 +9,7 @@ namespace Section9
         public static void Solve()
         {
             int a = EnterNumber();
-
+            Fibonacci(a);
         }
         static int EnterNumber()
         {
@@ -18,9 +18,19 @@ namespace Section9
         }
         static void Fibonacci(int a)
         {
-            int x1 = 0;
-            int x2 = 1;
-
+            int x1 = 0,
+                x2 = 1,
+                x3;
+            Console.Write($"{x1} {x2} ");
+            for(int i=2; i<a; i++)
+            {
+                x3 = x1 + x2;
+                x1 = x2;
+                x2 = x3;
+                Console.Write($"{x3} ");
+            }
+            Console.WriteLine();
+            
         }
     }
 }
