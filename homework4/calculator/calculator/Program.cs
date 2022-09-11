@@ -246,48 +246,70 @@ namespace calculator
             string[] oper = { "+", "-", "/", "*", "%", "^", "sqrt" };
             string a = Expression();
             string[] b = a.Split('+', '-', '/', '*', '%', '^') ;
-            for(int i=0; i<oper.Length; i++)
+            double rez = 0;
+            for (int j = 0; j < b.Length; j++)
             {
-                bool c = a.Contains(oper[i]);
-                if (c)
+                double b1 = rez;
+                double b2 = Convert.ToDouble(b[j]);
+                for (int i = 0; i < oper.Length; i++)
                 {
-                    for(int j=0; j<b.Length; j++)
+                    bool c = a.Contains(oper[i]);
+                    if (c)
                     {
-                        /*
-                        double b1 = Convert.ToDouble(b[j]);
-                        double b2 = Convert.ToDouble(b[++j]);
-                        Console.WriteLine($"{b1} {b2}");
-                        */
                         string nameOperation = oper[i];
-                        FinalRezult(nameOperation, Convert.ToDouble(b[j]), Convert.ToDouble(b[++j]));
+                         FinalRezult(nameOperation, b1, b2);
+                    }
+                    }
+                       
+            }
+
+
+                /*
+                    for(int i=0; i<oper.Length; i++)
+                    {
+                        bool c = a.Contains(oper[i]);
+                        if (c)
+                        {
+                            for(int j=0; j<b.Length; j++)
+                            {
+
+                                double b1 = Convert.ToDouble(b[j]);
+                                double b2 = Convert.ToDouble(b[++j]);
+                                Console.WriteLine($"{b1} {b2}");
+
+                                string nameOperation = oper[i];
+                                FinalRezult(nameOperation, Convert.ToDouble(b[j]), Convert.ToDouble(b[++j]));
+                            }
+                        }
+
+                    }
+                    */
+
+
+                /*
+                for(int i=0; i<oper.Length; i++)
+                {
+                   bool c = a.Contains(oper[i]);
+                    if (c)
+                    {
+                        string[] b = a.Split(oper[i]);
+                        try
+                        {
+                            double b1 = Convert.ToDouble(b[0]);
+                            double b2 = Convert.ToDouble(b[1]);
+                            string nameOperation = oper[i];
+                            FinalRezult(nameOperation, b1, b2);
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Oops! Something went wrong!");
+                            EnterExpression();
+                        }
                     }
                 }
+                */
 
             }
-            /*
-            for(int i=0; i<oper.Length; i++)
-            {
-               bool c = a.Contains(oper[i]);
-                if (c)
-                {
-                    string[] b = a.Split(oper[i]);
-                    try
-                    {
-                        double b1 = Convert.ToDouble(b[0]);
-                        double b2 = Convert.ToDouble(b[1]);
-                        string nameOperation = oper[i];
-                        FinalRezult(nameOperation, b1, b2);
-                    }
-                    catch (Exception)
-                    {
-                        Console.WriteLine("Oops! Something went wrong!");
-                        EnterExpression();
-                    }
-                }
-            }
-            */
-
-        }
         static void SpecialForDefault()
         {
             Console.WriteLine("Error! There is no such operation in the calculator!");
