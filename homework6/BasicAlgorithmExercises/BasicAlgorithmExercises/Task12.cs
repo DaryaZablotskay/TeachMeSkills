@@ -4,12 +4,12 @@ using System.Text;
 
 namespace BasicAlgorithmExercises
 {
-    static class Task7
+    static class Task12
     {
         public static void Solve()
         {
             string a = EnterString();
-            Swap(a);
+            Check(a);
         }
         static string EnterString()
         {
@@ -17,9 +17,16 @@ namespace BasicAlgorithmExercises
             return Console.ReadLine();
 
         }
-        static void Swap(string a)
+        static void Check(string a)
         {
-            Console.WriteLine(a[a.Length - 1] +a.Substring(1,a.Length-2)+a[0]);
+            if(a[0]=='C' && a[1]=='#')
+            {
+                Console.WriteLine("true");
+            }
+            else
+            {
+                Console.WriteLine("false");
+            }
         }
     }
 }

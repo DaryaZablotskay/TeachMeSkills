@@ -4,22 +4,28 @@ using System.Text;
 
 namespace BasicAlgorithmExercises
 {
-    static class Task7
+    static class Task17
     {
         public static void Solve()
         {
             string a = EnterString();
-            Swap(a);
+            Check(a);
         }
         static string EnterString()
         {
             Console.WriteLine("Enter string");
             return Console.ReadLine();
-
         }
-        static void Swap(string a)
+        static void Check(string a)
         {
-            Console.WriteLine(a[a.Length - 1] +a.Substring(1,a.Length-2)+a[0]);
+            if (a[1] == 'y' && a[2] == 't')
+            {
+                Console.WriteLine(a.Remove(1, 2));
+            }
+            else
+            {
+                Console.WriteLine(a);
+            }
         }
     }
 }

@@ -4,12 +4,12 @@ using System.Text;
 
 namespace BasicAlgorithmExercises
 {
-    static class Task7
+    static class Task8
     {
         public static void Solve()
         {
             string a = EnterString();
-            Swap(a);
+            Copies(a);
         }
         static string EnterString()
         {
@@ -17,9 +17,17 @@ namespace BasicAlgorithmExercises
             return Console.ReadLine();
 
         }
-        static void Swap(string a)
+        static void Copies(string a)
         {
-            Console.WriteLine(a[a.Length - 1] +a.Substring(1,a.Length-2)+a[0]);
+            if(a.Length<2)
+            {
+                Console.WriteLine(a);
+            }
+            else
+            {
+                Console.WriteLine(a.Substring(0, 2) + a.Substring(0, 2) + a.Substring(0, 2) + a.Substring(0, 2));
+            }
+
         }
     }
 }
