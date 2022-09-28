@@ -6,19 +6,17 @@ namespace Shapes
 {
     public class Circle : Shape
     {
-        public int Radius { get; set; }
-        public Circle(char symbol, int pointX, int pointY, int radius) : base(symbol, pointX, pointY)
+        public Circle(char symbol, int pointX, int pointY, int side) : base(symbol, pointX, pointY, side)
         {
-            Radius = radius;
         }
         public override void Print()
         {
-            for (int i = Radius; i >= -Radius; i--)
+            for (int i = Side; i >= -Side; i--)
             {
                 Console.SetCursorPosition(PointY, PointX);
-                for (int j = Radius; j >= -Radius; j--)
+                for (int j = Side; j >= -Side; j--)
                 {
-                    if (Convert.ToInt32(Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2))) == Radius)
+                    if (Convert.ToInt32(Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2))) == Side)
                     {
                         Console.Write(Symbol);
                     }
