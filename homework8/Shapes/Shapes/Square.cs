@@ -6,10 +6,8 @@ namespace Shapes
 {
     public class Square : Shape
     {
-        public int Side { get; }
-        public Square(char symbol, int pointX, int pointY, int side) : base(symbol, pointX, pointY)
+        public Square(char symbol, int pointX, int pointY, int side) : base(symbol, pointX, pointY, side)
         {
-            Side = side;
         }
         public override void Print()
         {
