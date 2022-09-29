@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Shapes
 {
+    [Color(ConsoleColor.Blue)]
     public class Triangle:Shape
     {
         public Triangle(char symbol, int pointX, int pointY, int side) : base(symbol, pointX, pointY, side)

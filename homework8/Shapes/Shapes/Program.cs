@@ -50,7 +50,16 @@ namespace Shapes
                     if (item.Name == shape)
                     {
                         var obj = Activator.CreateInstance(item, param);
-                        metod?.Invoke(obj, parameters: null);
+                        var attr = obj.GetType().GetCustomAttributes(false);
+                        foreach (var it in attr)
+                        {
+                            if(it is ColorAttribute colorAttribute)
+                            {
+                                Console.ForegroundColor = colorAttribute.ColorShape;
+                                metod?.Invoke(obj, parameters: null);
+                                Console.ResetColor();
+                            }
+                        }
                     }
                 }
             }

@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Shapes
 {
+    [Color(ConsoleColor.Red)]
     public class Text:IPrintable
     {
         public int PointX { get; set; }
