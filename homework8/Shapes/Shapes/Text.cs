@@ -16,10 +16,10 @@ namespace Shapes
             PointX = pointX;
             PointY = pointY;
         }
-        public void Print()
+        public void Print(Action<string> inputS, Action<char> inputC)
         {
             Console.SetCursorPosition(PointY, PointX);
-            Console.WriteLine(Message);
+            inputS(Message);
         }
     }
 }

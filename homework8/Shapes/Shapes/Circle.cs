@@ -10,7 +10,7 @@ namespace Shapes
         public Circle(char symbol, int pointX, int pointY, int side) : base(symbol, pointX, pointY, side)
         {
         }
-        public override void Print()
+        public override void Print(Action<string> inputS, Action<char> inputC)
         {
             for (int i = Side; i >= -Side; i--)
             {
@@ -19,14 +19,14 @@ namespace Shapes
                 {
                     if (Convert.ToInt32(Math.Sqrt(Math.Pow(i, 2) + Math.Pow(j, 2))) == Side)
                     {
-                        Console.Write(Symbol);
+                        inputC(Symbol);
                     }
                     else
                     {
-                        Console.Write(" ");
+                        inputS(" ");
                     }
                 }
-                Console.WriteLine();
+                inputS("\n");
                 PointX++;
             }
         }

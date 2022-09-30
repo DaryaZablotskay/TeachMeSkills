@@ -6,6 +6,6 @@ namespace Shapes
 {
     public interface IPrintable
     {
-        public void Print();
+        public void Print(Action <string> inputS, Action<char> inputC);
     }
 }

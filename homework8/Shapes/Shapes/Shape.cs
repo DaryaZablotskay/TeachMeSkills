@@ -6,6 +6,8 @@ namespace Shapes
 {
     public abstract class Shape : IPrintable
     {
+        public Action<string> WriteS { get; set; }
+        public Action<char> WriteC { get; set; }
         public char Symbol { get; }
         public int PointX { get; set; }
         public int PointY { get; set; }
@@ -18,6 +20,6 @@ namespace Shapes
             PointY = pointY;
             Side = side;
         }
-        public abstract void Print();
+        public abstract void Print(Action<string> inputS, Action<char> inputC);
     }
 }

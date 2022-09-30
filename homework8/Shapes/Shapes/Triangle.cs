@@ -10,7 +10,7 @@ namespace Shapes
         public Triangle(char symbol, int pointX, int pointY, int side) : base(symbol, pointX, pointY, side)
         {
         }
-        public override void Print()
+        public override void Print(Action<string> inputS, Action<char> inputC)
         {
             for (int i = 0; i < Side; i++)
             {
@@ -19,14 +19,14 @@ namespace Shapes
                 {
                     if (j == 0 || j == 2 * i || i == Side - 1)
                     {
-                        Console.Write(Symbol);
+                        inputC(Symbol);
                     }
                     else
                     {
-                        Console.Write(" ");
+                        inputS(" ");
                     }
                 }
-                Console.WriteLine();
+                inputS("\n");
             }
         }
     }
