@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Shapes
 {
+    [Color(ConsoleColor.Red)]
     public class Text:IPrintable
     {
         public int PointX { get; set; }
@@ -15,10 +16,12 @@ namespace Shapes
             PointX = pointX;
             PointY = pointY;
         }
-        public void Print()
+        public void Print(Action<string> inputS, Action<char> inputC, Action repeat)
         {
             Console.SetCursorPosition(PointY, PointX);
-            Console.WriteLine(Message);
+            inputS(Message);
+            Console.ResetColor();
+            repeat();
         }
     }
 }

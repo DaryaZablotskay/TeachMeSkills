@@ -7,16 +7,16 @@ namespace Shapes
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Choose a shape: \n" + "Square \n" + "Circle \n" + "Triangle \n" + "Text");
-            Console.WriteLine();
-            var shape = Console.ReadLine();
-            Console.WriteLine();
+            StartMenu();
+        }
+        public static object[] EnterParam(string choose)
+        {
             Console.WriteLine("Enter the origin of the coordinates by X more than 20:");
             var pointX = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter the origin of the coordinates by Y:");
             var pointY = Convert.ToInt32(Console.ReadLine());
             object[] param;
-            if (shape != "Text")
+            if (choose != "Text")
             {
                 Console.WriteLine("Enter the symbol that you will use to draw the shape:");
                 var symbol = Convert.ToChar(Console.ReadLine());
@@ -30,6 +30,24 @@ namespace Shapes
                 var message = Console.ReadLine();
                 param = new object[] { message, pointX, pointY };
             }
+            return param;
+        }
+        public static void StartMenu()
+        {
+            Action repeat = StartMenu;
+            Action<string> inputS = (str) => Console.Write(str);
+            Action<char> inputC = (ch) => Console.Write(ch);
+            object[] paramMet = new object[] { inputS, inputC, repeat };
+
+            Console.WriteLine("Choose a shape: \n" + "Square \n" + "Circle \n" + "Triangle \n" + "Text \n" + "Exit");
+            Console.WriteLine();
+            string choose = Console.ReadLine();
+            if(choose=="Exit")
+            {
+                return;
+            }
+            Console.WriteLine();
+            object[] paramCon = EnterParam(choose);
 
             Type type = typeof(IPrintable);
             var metods = type?.GetMethods();
@@ -47,13 +65,22 @@ namespace Shapes
             {
                 if (item.IsClass && type.IsAssignableFrom(item))
                 {
-                    if (item.Name == shape)
+                    if (item.Name == choose)
                     {
-                        var obj = Activator.CreateInstance(item, param);
-                        metod?.Invoke(obj, parameters: null);
+                        var obj = Activator.CreateInstance(item, paramCon);
+                        var attr = obj.GetType().GetCustomAttributes(false);
+                        foreach (var it in attr)
+                        {
+                            if (it is ColorAttribute colorAttribute)
+                            {
+                                Console.ForegroundColor = colorAttribute.ColorShape;
+                                metod?.Invoke(obj, parameters: paramMet);
+                            }
+                        }
                     }
                 }
             }
         }
+
     }
 }
