@@ -10,9 +10,8 @@ namespace Shapes
         public Square(char symbol, int pointX, int pointY, int side) : base(symbol, pointX, pointY, side)
         {
         }
-        public override void Print(Action<string> inputS, Action<char> inputC)
+        public override void Print(Action<string> inputS, Action<char> inputC, Action repeat)
         {
-           
  
             for (int i = 0; i < Side; i++)
             {
@@ -38,6 +37,8 @@ namespace Shapes
                 inputS("\n");
                 PointX++;
             }
+            Console.ResetColor();
+            repeat();
         }
     }
 }

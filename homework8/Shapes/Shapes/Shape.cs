@@ -20,6 +20,6 @@ namespace Shapes
             PointY = pointY;
             Side = side;
         }
-        public abstract void Print(Action<string> inputS, Action<char> inputC);
+        public abstract void Print(Action<string> inputS, Action<char> inputC, Action repeat);
     }
 }

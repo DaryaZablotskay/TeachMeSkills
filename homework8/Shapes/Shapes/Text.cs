@@ -16,10 +16,12 @@ namespace Shapes
             PointX = pointX;
             PointY = pointY;
         }
-        public void Print(Action<string> inputS, Action<char> inputC)
+        public void Print(Action<string> inputS, Action<char> inputC, Action repeat)
         {
             Console.SetCursorPosition(PointY, PointX);
             inputS(Message);
+            Console.ResetColor();
+            repeat();
         }
     }
 }
