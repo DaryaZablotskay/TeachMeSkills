@@ -7,6 +7,7 @@ namespace Shapes
     [Color(ConsoleColor.Yellow)]
     public class Square : Shape
     {
+        
         public Square(char symbol, int pointX, int pointY, int side) : base(symbol, pointX, pointY, side)
         {
         }
@@ -37,7 +38,6 @@ namespace Shapes
                 inputS("\n");
                 PointX++;
             }
-            Console.ResetColor();
             repeat();
         }
     }

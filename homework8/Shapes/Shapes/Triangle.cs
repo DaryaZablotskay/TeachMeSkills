@@ -28,7 +28,6 @@ namespace Shapes
                 }
                 inputS("\n");
             }
-            Console.ResetColor();
             repeat();
         }
     }

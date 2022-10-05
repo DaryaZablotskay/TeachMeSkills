@@ -9,6 +9,51 @@ namespace Shapes
         {
             StartMenu();
         }
+        public static void PrintShape(string choose, Type type, Type[] types)
+        {
+            Action repeat = StartMenu;
+            Action<string> inputS = (str) => Console.Write(str);
+            Action<char> inputC = (ch) => Console.Write(ch);
+            object[] paramMet = new object[] { inputS, inputC, repeat };
+
+            var metods = type?.GetMethods();
+            foreach (var item in metods)
+            {
+                Console.WriteLine($"Metod: {item}");
+            }
+            Console.WriteLine("What metod do you want?");
+            string metodEnter = Console.ReadLine();
+            var metod = type?.GetMethod(metodEnter);
+            object[] paramCon = EnterParam(choose);
+
+
+
+            foreach (var item in types)
+            {
+                if (item.IsClass && type.IsAssignableFrom(item))
+                {
+                    if (item.Name == choose)
+                    {
+                        var obj = Activator.CreateInstance(item, paramCon);
+                        var attr = obj.GetType().GetCustomAttributes(false);
+                        foreach (var it in attr)
+                        {
+                            if (it is ColorAttribute colorAttribute)
+                            {
+                                Console.ForegroundColor = colorAttribute.ColorShape;
+                                metod?.Invoke(obj, parameters: paramMet);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        public static (Type, Type[]) Loadshape()
+        {
+            var type = typeof(IPrintable);
+            var types = Assembly.GetAssembly(type)?.GetTypes();
+            return (type, types);
+        }
         public static object[] EnterParam(string choose)
         {
             Console.WriteLine("Enter the origin of the coordinates by X more than 20:");
@@ -32,54 +77,21 @@ namespace Shapes
             }
             return param;
         }
+
         public static void StartMenu()
         {
-            Action repeat = StartMenu;
-            Action<string> inputS = (str) => Console.Write(str);
-            Action<char> inputC = (ch) => Console.Write(ch);
-            object[] paramMet = new object[] { inputS, inputC, repeat };
-
+            Console.ResetColor();
+            Console.WriteLine();
             Console.WriteLine("Choose a shape: \n" + "Square \n" + "Circle \n" + "Triangle \n" + "Text \n" + "Exit");
             Console.WriteLine();
             string choose = Console.ReadLine();
-            if(choose=="Exit")
+            Console.WriteLine();
+            if (choose == "Exit")
             {
                 return;
             }
-            Console.WriteLine();
-            object[] paramCon = EnterParam(choose);
-
-            Type type = typeof(IPrintable);
-            var metods = type?.GetMethods();
-            foreach (var item in metods)
-            {
-                Console.WriteLine($"Metod: {item}");
-            }
-            Console.WriteLine("What metod do you want?");
-            string metodEnter = Console.ReadLine();
-            var metod = type?.GetMethod(metodEnter);
-
-            var types = Assembly.GetAssembly(type)?.GetTypes();
-
-            foreach (var item in types)
-            {
-                if (item.IsClass && type.IsAssignableFrom(item))
-                {
-                    if (item.Name == choose)
-                    {
-                        var obj = Activator.CreateInstance(item, paramCon);
-                        var attr = obj.GetType().GetCustomAttributes(false);
-                        foreach (var it in attr)
-                        {
-                            if (it is ColorAttribute colorAttribute)
-                            {
-                                Console.ForegroundColor = colorAttribute.ColorShape;
-                                metod?.Invoke(obj, parameters: paramMet);
-                            }
-                        }
-                    }
-                }
-            }
+            (Type type, Type[] types) = Loadshape();
+            PrintShape(choose, type, types);
         }
 
     }
