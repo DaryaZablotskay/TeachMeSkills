@@ -7,11 +7,10 @@ namespace Shapes
     [Color(ConsoleColor.Yellow)]
     public class Square : Shape
     {
-        
         public Square(char symbol, int pointX, int pointY, int side) : base(symbol, pointX, pointY, side)
         {
         }
-        public override void Print(Action<string> inputS, Action<char> inputC, Action repeat)
+        public override void Print(Action<string> inputS, Action<char> inputC)
         {
  
             for (int i = 0; i < Side; i++)
@@ -38,7 +37,11 @@ namespace Shapes
                 inputS("\n");
                 PointX++;
             }
-            repeat();
+            OnNotify();
+        }
+        protected override void OnNotify()
+        {
+            base.OnNotify();
         }
     }
 }
