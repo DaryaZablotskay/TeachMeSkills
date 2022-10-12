@@ -4,7 +4,11 @@ using System.Text;
 
 namespace lesson12
 {
-    class Struct
+    public class Struct
     {
+        static void Solve()
+        {
+
+        }
     }
 }
