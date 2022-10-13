@@ -9,6 +9,7 @@ namespace LinkedList
         {
             var list = new MyLinkedList<int>();
             list.Add(2);
+            list.Add(3);
             Console.WriteLine();
         }
     }

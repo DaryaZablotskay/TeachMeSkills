@@ -7,25 +7,27 @@ namespace LinkedList
     public class MyLinkedList<T>
     {
         internal MyLinkedListNode<T> head;
+        internal MyLinkedListNode<T> last;
         public int Count { get; set; }
         public MyLinkedListNode<T> First { get => head; }
-        public MyLinkedListNode<T> Last { get; set; }
+        public MyLinkedListNode<T> Last { get => last; }
         public void Add(T item)
         {
             MyLinkedListNode<T> node = new MyLinkedListNode<T>(item);
             if (head==null)
             {
-                node.Next = node;
-                node.Previous = null;
+                node.Next = null;
                 node.Value = item;
                 head = node;
+                last = node;
                 Count++;
             }
             else
             {
                 head.Next = node;
-                node.Previous = head;
                 node.Value = item;
+                last = node;
+                node.Next = null;
                 Count++;
             }
         }
