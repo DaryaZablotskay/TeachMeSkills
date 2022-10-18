@@ -46,14 +46,19 @@ namespace homework11
             var sw = new StreamWriter(stream);
             js.Serialize(sw, caffe1);
             sw.Flush();
+            
 
-            stream.Seek(0, SeekOrigin.Begin);
+            stream.Seek(0, SeekOrigin.);
+            js.Serialize(sw, caffe2);
+            sw.Flush();
+            js.Serialize(sw, caffe3);
+            sw.Flush();
+
+            stream.Close();
 
             //var streamReader = new StreamReader(stream);
             //var deserializedObj = (Caffe)js.Deserialize(streamReader, typeof(Caffe));
             //Console.WriteLine(deserializedObj);
-
-            stream.Close();
         }
     }
     public class Caffe
