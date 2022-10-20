@@ -15,8 +15,6 @@ namespace Table
             Console.WriteLine("Enput path to file");
             var path = Console.ReadLine();
             //"D:\\TeachMeSkills\\TeachMeSkillls\\TeachMeSkills\\homework11\\homework11\\homework11\\bin\\Debug\\netcoreapp3.1\\caffe.json"
-            Heading();
-            Console.WriteLine();
         
             List<Caffe> caffes = new List<Caffe>();
 
@@ -26,11 +24,6 @@ namespace Table
                 caffes = JsonConvert.DeserializeObject<List<Caffe>>(json);
             }
 
-            foreach (var item in caffes)
-            {
-                table.AddRow(item.Name, item.Emploee, item.Information);
-            }
-            table.Print();
             using (StreamWriter streamWriter = new StreamWriter(path))
             {
                 Console.WriteLine("Do you want to add new row?");
@@ -47,18 +40,28 @@ namespace Table
                     var number = Convert.ToInt32(Console.ReadLine());
                     var info = new Information() { City = city, Street = street, PhoneNumber = number };
 
-                    //table.AddRow(first, second, third);
-                    //var caffe4 = new Caffe() { Name = name, Emploee = empl, Information = info };
-
                     caffes.Add(new Caffe() { Name = name, Emploee = empl, Information = info });
-
-                    var json = JsonConvert.SerializeObject(caffes, Formatting.Indented);
-                    streamWriter.WriteLine(json);
 
                     Console.WriteLine("Do you want to add new row?");
                     answer = Console.ReadLine();
                 }
+                var json = JsonConvert.SerializeObject(caffes, Formatting.Indented);
+                streamWriter.WriteLine(json);
             }
+            List<Caffe> caffes1 = new List<Caffe>();
+            using (StreamReader streamReader = new StreamReader(path))
+            {
+                var json = streamReader.ReadToEnd();
+                caffes1 = JsonConvert.DeserializeObject<List<Caffe>>(json);
+            }
+
+            foreach (var item in caffes1)
+            {
+                table.AddRow(item.Name, item.Emploee, item.Information);
+            }
+            Heading();
+            Console.WriteLine();
+            table.Print();
         }
         public static void Heading()
         {
