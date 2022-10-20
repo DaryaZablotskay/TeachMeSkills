@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace homework11
@@ -10,7 +11,7 @@ namespace homework11
         {
             var caffe1 = new Caffe()
             { 
-                Name="Cat",
+                Name="Napoleon",
                 Emploee=10,
                 Information =new Information
                 {
@@ -21,7 +22,7 @@ namespace homework11
             };
             var caffe2 = new Caffe()
             {
-                Name = "Dog",
+                Name = "Corgi",
                 Emploee = 12,
                 Information = new Information
                 {
@@ -32,33 +33,35 @@ namespace homework11
             };
             var caffe3 = new Caffe()
             {
-                Name = "Pet",
+                Name = "Sweety",
                 Emploee = 7,
                 Information = new Information
                 {
-                    Street = "",
+                    Street = "Malinovka",
                     City = "Minsk",
                     PhoneNumber = 3820790
                 }
             };
-            FileStream stream = File.Open("caffe.json", FileMode.OpenOrCreate);
-            JsonSerializer js = new JsonSerializer();
-            var sw = new StreamWriter(stream);
-            js.Serialize(sw, caffe1);
-            sw.Flush();
-            
+            List<Caffe> caffe = new List<Caffe>() { caffe1, caffe2, caffe3 };
 
-            stream.Seek(0, SeekOrigin.);
-            js.Serialize(sw, caffe2);
-            sw.Flush();
-            js.Serialize(sw, caffe3);
-            sw.Flush();
+            List<Caffe> obj = new List<Caffe>();
 
-            stream.Close();
+            using (StreamWriter streamWriter = new StreamWriter("caffe.json"))
+            {
+                var json = JsonConvert.SerializeObject(caffe, Formatting.Indented);
+                streamWriter.WriteLine(json);
+            }
 
-            //var streamReader = new StreamReader(stream);
-            //var deserializedObj = (Caffe)js.Deserialize(streamReader, typeof(Caffe));
-            //Console.WriteLine(deserializedObj);
+            using(StreamReader streamReader = new StreamReader("caffe.json"))
+            {
+                var json = streamReader.ReadToEnd();
+                obj = JsonConvert.DeserializeObject<List<Caffe>>(json);
+            }
+
+            foreach (var item in obj)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
     public class Caffe
@@ -70,6 +73,10 @@ namespace homework11
         {
         }
 
+        public override string ToString()
+        {
+            return $"{Name} {Emploee} {Information}";
+        }
     }
     public class Information
     { 

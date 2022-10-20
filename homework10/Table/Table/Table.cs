@@ -18,6 +18,13 @@ namespace Table
             Third.Add(third);
             Count++;
         }
+        public void DeleteRow(int index)
+        {
+            First.Remove(First[index]);
+            Second.Remove(Second[index]);
+            Third.Remove(Third[index]);
+            Count--;
+        }
         public void Print()
         {
            for(int i=0;i<Count;i++)
