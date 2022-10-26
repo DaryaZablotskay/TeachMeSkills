@@ -7,10 +7,12 @@ namespace Shapes
     [Color(ConsoleColor.Blue)]
     public class Triangle:Shape
     {
+        public delegate void Menu();
+        public event Menu? Notify;
         public Triangle(char symbol, int pointX, int pointY, int side) : base(symbol, pointX, pointY, side)
         {
         }
-        public override void Print(Action<string> inputS, Action<char> inputC, Action repeat)
+        public override void Print(Action<string> inputS, Action<char> inputC)
         {
             for (int i = 0; i < Side; i++)
             {
@@ -28,7 +30,11 @@ namespace Shapes
                 }
                 inputS("\n");
             }
-            repeat();
+            OnNotify();
+        }
+        protected override void OnNotify()
+        {
+            base.OnNotify();
         }
     }
 }

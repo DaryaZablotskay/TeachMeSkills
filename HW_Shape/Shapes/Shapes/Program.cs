@@ -11,10 +11,9 @@ namespace Shapes
         }
         public static void PrintShape(string choose, Type type, Type[] types)
         {
-            Action repeat = StartMenu;
             Action<string> inputS = (str) => Console.Write(str);
             Action<char> inputC = (ch) => Console.Write(ch);
-            object[] paramMet = new object[] { inputS, inputC, repeat };
+            object[] paramMet = new object[] { inputS, inputC};
 
             var metods = type?.GetMethods();
             foreach (var item in metods)
@@ -30,18 +29,39 @@ namespace Shapes
 
             foreach (var item in types)
             {
-                if (item.IsClass && type.IsAssignableFrom(item))
+                if (item.IsClass && type.IsAssignableFrom(item) && item.IsAbstract==false)
                 {
                     if (item.Name == choose)
                     {
-                        var obj = Activator.CreateInstance(item, paramCon);
-                        var attr = obj.GetType().GetCustomAttributes(false);
-                        foreach (var it in attr)
+                        object[] attr = null;
+                        var obj = Activator.CreateInstance(item, paramCon) as Shape;
+                        if (obj == null)
                         {
-                            if (it is ColorAttribute colorAttribute)
+                            var textObj = Activator.CreateInstance(item, paramCon) as Text;
+                            textObj.Notify += StartMenu;
+                            attr = textObj.GetType().GetCustomAttributes(false);
+                            foreach (var it in attr)
                             {
-                                Console.ForegroundColor = colorAttribute.ColorShape;
-                                metod?.Invoke(obj, parameters: paramMet);
+                                if (it is ColorAttribute colorAttribute)
+                                {
+                                    Console.ForegroundColor = colorAttribute.ColorShape;
+                                    metod?.Invoke(textObj, parameters: paramMet);
+
+                                }
+                            }
+                        }
+                        else
+                        {
+                            obj.Notify += StartMenu;
+                            attr = obj.GetType().GetCustomAttributes(false);
+                            foreach (var it in attr)
+                            {
+                                if (it is ColorAttribute colorAttribute)
+                                {
+                                    Console.ForegroundColor = colorAttribute.ColorShape;
+                                    metod?.Invoke(obj, parameters: paramMet);
+
+                                }
                             }
                         }
                     }
@@ -81,8 +101,15 @@ namespace Shapes
         public static void StartMenu()
         {
             Console.ResetColor();
-            Console.WriteLine();
-            Console.WriteLine("Choose a shape: \n" + "Square \n" + "Circle \n" + "Triangle \n" + "Text \n" + "Exit");
+            Console.WriteLine("Choose a shape: \nExit");
+            (Type type, Type[] types) = Loadshape();
+            foreach (var item in types)
+            {
+                if (item.IsClass && type.IsAssignableFrom(item) && item.IsAbstract==false)
+                {
+                    Console.WriteLine(item.Name);
+                }
+            }
             Console.WriteLine();
             string choose = Console.ReadLine();
             Console.WriteLine();
@@ -90,7 +117,6 @@ namespace Shapes
             {
                 return;
             }
-            (Type type, Type[] types) = Loadshape();
             PrintShape(choose, type, types);
         }
 
