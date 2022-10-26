@@ -26,6 +26,16 @@ namespace lesson15
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddOpenApiDocument(config=>
+            {
+                config.Title = "My best site";
+            });
+            services.AddScoped<IHomeServises, HomeServises>();
+            services.AddSingleton<IHomeServises, HomeServises>();
+            services.AddTransient<IHomeServises, HomeServises>();
+            //services.AddScoped<IA, A>();
+            //services.AddScoped<IB, B>();
+            //services.AddScoped<IC, C>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,10 +45,18 @@ namespace lesson15
             {
                 app.UseDeveloperExceptionPage();
             }
+            
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseOpenApi(); // serve OpenAPI/Swagger documents
+            app.UseSwaggerUi3(config=>
+            {
+                config.DocumentTitle = "My web site";
+                config.DocExpansion = "list";
+            }
+                ); // serve Swagger UI
 
             app.UseAuthorization();
 
