@@ -20,7 +20,6 @@ namespace Shapes
         {
             Console.SetCursorPosition(PointY, PointX);
             inputS(Message);
-            Console.ResetColor();
             repeat();
         }
     }

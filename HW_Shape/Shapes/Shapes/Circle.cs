@@ -7,6 +7,7 @@ namespace Shapes
     [Color(ConsoleColor.Green)]
     public class Circle : Shape
     {
+
         public Circle(char symbol, int pointX, int pointY, int side) : base(symbol, pointX, pointY, side)
         {
         }
@@ -29,7 +30,6 @@ namespace Shapes
                 inputS("\n");
                 PointX++;
             }
-            Console.ResetColor();
             repeat();
         }
     }
