@@ -1,0 +1,26 @@
+[
+  {
+    "Name": "Application programming",
+    "NumberLab": 5,
+    "GoodTeacher": true,
+    "FinalTest": "exam"
+  },
+  {
+    "Name": "Computer networks",
+    "NumberLab": 6,
+    "GoodTeacher": false,
+    "FinalTest": "test"
+  },
+  {
+    "Name": "Atomic physics",
+    "NumberLab": 5,
+    "GoodTeacher": true,
+    "FinalTest": "exam"
+  },
+  {
+    "Name": "Microprocessors",
+    "NumberLab": 7,
+    "GoodTeacher": false,
+    "FinalTest": "exam"
+  }
+]

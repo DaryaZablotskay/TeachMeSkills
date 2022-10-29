@@ -18,21 +18,32 @@ namespace HW_25._10.Controllers
         {
             _config = config;
         }
+
         [HttpGet("first")]
         public string GetFirst()
         {
             return _config.GetValue<string>("DataFile");
         }
+
         [HttpGet("second")]
         public string GetSecond()
         {
-            var path = _config.GetValue<string>("DataFile1");
-            string text = null;
+            var path = _config.GetValue<string>("DataFile");
+           
             using(StreamReader streamReader = new StreamReader(path))
             {
-                text = streamReader.ReadToEnd();
+               return streamReader.ReadToEnd();
             }
-            return text;
+        }
+        [HttpGet("third")]
+        public List<Subject> GetThird()
+        {
+            var path = _config.GetValue<string>("DataFile");
+            using (StreamReader streamReader = new StreamReader(path))
+            {
+                var json = streamReader.ReadToEnd();
+                return JsonConvert.DeserializeObject<List<Subject>>(json);
+            }
         }
     }
 }
