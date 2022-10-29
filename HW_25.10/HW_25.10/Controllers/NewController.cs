@@ -13,9 +13,11 @@ namespace HW_25._10.Controllers
     [Route("task")]
     public class NewController : ControllerBase
     {
+        private readonly IDecerialize _decerialize;
         private readonly IConfiguration _config;
-        public NewController(IConfiguration config)
+        public NewController(IDecerialize decerialize, IConfiguration config)
         {
+            _decerialize = decerialize;
             _config = config;
         }
 
@@ -35,15 +37,12 @@ namespace HW_25._10.Controllers
                return streamReader.ReadToEnd();
             }
         }
-        [HttpGet("third")]
+
+        [HttpGet("third-fourth")]
         public List<Subject> GetThird()
         {
             var path = _config.GetValue<string>("DataFile");
-            using (StreamReader streamReader = new StreamReader(path))
-            {
-                var json = streamReader.ReadToEnd();
-                return JsonConvert.DeserializeObject<List<Subject>>(json);
-            }
+            return _decerialize.Decerialization(path);
         }
     }
 }
