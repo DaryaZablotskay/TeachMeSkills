@@ -30,7 +30,7 @@ namespace HW_25._10
             {
                 config.Title = "HoMeWoRk";
             });
-            services.AddScoped<IDecerialize, Decerialize>();
+            services.AddScoped<IDecerializer, Decerializer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

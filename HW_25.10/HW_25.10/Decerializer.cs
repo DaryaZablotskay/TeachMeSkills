@@ -8,10 +8,10 @@ using Newtonsoft.Json;
 
 namespace HW_25._10
 {
-    public class Decerialize : IDecerialize
+    public class Decerializer : IDecerializer
     {
         private readonly IConfiguration _config;
-        public List<Subject> Decerialization(string path)
+        public List<Subject> Decerialize(string path)
         {
             using (StreamReader streamReader = new StreamReader(path))
             {
@@ -19,9 +19,5 @@ namespace HW_25._10
                 return JsonConvert.DeserializeObject<List<Subject>>(json);
             }
         }
-    }
-    public interface IDecerialize
-    {
-        public List<Subject> Decerialization(string path);
     }
 }

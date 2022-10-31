@@ -13,11 +13,11 @@ namespace HW_25._10.Controllers
     [Route("task")]
     public class NewController : ControllerBase
     {
-        private readonly IDecerialize _decerialize;
+        private readonly IDecerializer _decerializer;
         private readonly IConfiguration _config;
-        public NewController(IDecerialize decerialize, IConfiguration config)
+        public NewController(IDecerializer decerializer, IConfiguration config)
         {
-            _decerialize = decerialize;
+            _decerializer = decerializer;
             _config = config;
         }
 
@@ -42,7 +42,7 @@ namespace HW_25._10.Controllers
         public List<Subject> GetThird()
         {
             var path = _config.GetValue<string>("DataFile");
-            return _decerialize.Decerialization(path);
+            return _decerializer.Decerialize(path);
         }
     }
 }
