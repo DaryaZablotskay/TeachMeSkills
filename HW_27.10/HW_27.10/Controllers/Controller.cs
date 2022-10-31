@@ -66,5 +66,33 @@ namespace HW_27._10.Controllers
                 streamWriter.WriteLine(json);
             }
         }
+
+        [HttpPut("change/{id}")]
+        public void Put([FromBody] Book book, Guid id)
+        {
+            List<Book> books = new List<Book>();
+            using (StreamReader streamReader = new StreamReader(_config.GetValue<string>("Path1")))
+            {
+                var json = streamReader.ReadToEnd();
+                books = JsonConvert.DeserializeObject<List<Book>>(json);
+            }
+            using (StreamWriter streamWriter = new StreamWriter(_config.GetValue<string>("Path1")))
+            {
+                foreach (var item in books)
+                {
+                    if (item.Id == id)
+                    {
+                        item.Name = book.Name;
+                        item.Author = book.Author;
+                        item.Pages = book.Pages;
+                        item.Popularity = book.Popularity;
+                        item.Id = book.Id;
+                    }
+                }
+
+                var json = JsonConvert.SerializeObject(books, Formatting.Indented);
+                streamWriter.WriteLine(json);
+            }
+        }
     }
 }
