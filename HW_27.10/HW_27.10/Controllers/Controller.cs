@@ -67,8 +67,8 @@ namespace HW_27._10.Controllers
             }
         }
 
-        [HttpPut("change/{id}")]
-        public void Put([FromBody] Book book, Guid id)
+        [HttpDelete("delete/{id}")]
+        public void Delete(Guid id)
         {
             List<Book> books = new List<Book>();
             using (StreamReader streamReader = new StreamReader(_config.GetValue<string>("Path1")))
@@ -78,18 +78,14 @@ namespace HW_27._10.Controllers
             }
             using (StreamWriter streamWriter = new StreamWriter(_config.GetValue<string>("Path1")))
             {
-                foreach (var item in books)
+               
+                for(int i=0; i<books.Count; i++)
                 {
-                    if (item.Id == id)
+                    if (books[i].Id == id)
                     {
-                        item.Name = book.Name;
-                        item.Author = book.Author;
-                        item.Pages = book.Pages;
-                        item.Popularity = book.Popularity;
-                        item.Id = book.Id;
+                        books.Remove(books[i]);
                     }
                 }
-
                 var json = JsonConvert.SerializeObject(books, Formatting.Indented);
                 streamWriter.WriteLine(json);
             }
