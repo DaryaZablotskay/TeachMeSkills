@@ -14,81 +14,97 @@ namespace HW_27._10.Controllers
     public class Controller : ControllerBase
     {
         private readonly IConfiguration _config;
-        public Controller(IConfiguration config)
+        private readonly ISerialization _serialization;
+        private readonly IDeserialization _deserialization;
+        public readonly string _path;
+        public Controller(IConfiguration config, ISerialization serialization, IDeserialization deserialization)
         {
+            _deserialization = deserialization;
+            _serialization = serialization;
             _config = config;
+            _path = _config.GetValue<string>("dataFilePath");
         }
 
         [HttpGet("all")]
-        public List<Book> GetAll()
+        public ActionResult<List<Book>> GetAll()
         {
-            using (StreamReader streamReader = new StreamReader(_config.GetValue<string>("Path1")))
+            var books = _deserialization.Deserialize(_path);
+            if (books == null)
             {
-                var json = streamReader.ReadToEnd();
-                return JsonConvert.DeserializeObject<List<Book>>(json);
+                return NotFound();
+            }
+            else
+            {
+                return books;
             }
         }
 
-        [HttpGet("one/{id}")]
-        public Book GetOne(Guid id)
+        [HttpGet("{id:guid}")]
+        public ActionResult<Book> GetOne([FromRoute] Guid id)
         {
-            using (StreamReader streamReader = new StreamReader(_config.GetValue<string>("Path1")))
+            var books = _deserialization.Deserialize(_path);
+            foreach (var item in books)
             {
-                var json = streamReader.ReadToEnd();
-                var books = JsonConvert.DeserializeObject<List<Book>>(json);
-                foreach (var item in books)
+                if (id == item.Id)
                 {
-                    if (id == item.Id)
-                    {
-                        return item;
-                    }
+                    return item;
                 }
-                return null;
             }
+            return NotFound();
         }
 
-        [HttpPost("add")]
-        public void Post([FromBody] Book book)
+        [HttpPost]
+        public void Post([FromBody] BookDTO bookDto)
         {
-            List<Book> books = new List<Book>();
-            var newBook = new Book() { Name = book.Name, Author = book.Author, Id = book.Id, Pages = book.Pages, Popularity = book.Popularity };
-
-            using (StreamReader streamReader = new StreamReader(_config.GetValue<string>("Path1")))
+            var newBook = new Book()
             {
-                var json = streamReader.ReadToEnd();
-                books = JsonConvert.DeserializeObject<List<Book>>(json);
-            }
+                Name = bookDto.Name,
+                Author = bookDto.Author,
+                Pages = bookDto.Pages,
+                Popularity = bookDto.Popularity,
+                Id = Guid.NewGuid()
+            };
 
-            using (StreamWriter streamWriter = new StreamWriter(_config.GetValue<string>("Path1")))
-            {
-                books.Add(newBook);
-                var json = JsonConvert.SerializeObject(books, Formatting.Indented);
-                streamWriter.WriteLine(json);
-            }
+            var books = _deserialization.Deserialize(_path);
+            books.Add(newBook);
+            _serialization.Serialize(books, _path);
         }
 
-        [HttpDelete("delete/{id}")]
-        public void Delete(Guid id)
+        [HttpPut("{id:guid}")]
+        public void Put([FromBody] BookDTO bookDto, [FromRoute] Guid id)
         {
-            List<Book> books = new List<Book>();
-            using (StreamReader streamReader = new StreamReader(_config.GetValue<string>("Path1")))
+            var books = _deserialization.Deserialize(_path);
+            foreach (var item in books)
             {
-                var json = streamReader.ReadToEnd();
-                books = JsonConvert.DeserializeObject<List<Book>>(json);
-            }
-            using (StreamWriter streamWriter = new StreamWriter(_config.GetValue<string>("Path1")))
-            {
-               
-                for(int i=0; i<books.Count; i++)
+                if (item.Id == id)
                 {
-                    if (books[i].Id == id)
-                    {
-                        books.Remove(books[i]);
-                    }
+                    item.Name = bookDto.Name;
+                    item.Author = bookDto.Author;
+                    item.Pages = bookDto.Pages;
+                    item.Popularity = bookDto.Popularity;
                 }
-                var json = JsonConvert.SerializeObject(books, Formatting.Indented);
-                streamWriter.WriteLine(json);
             }
+
+            _serialization.Serialize(books, _path);
+        }
+
+        [HttpDelete("{id:guid}")]
+        public void Delete([FromRoute] Guid id)
+        {
+            var books = _deserialization.Deserialize(_path);
+            foreach (var item in books.ToList())
+            {
+                if (item.Id == id)
+                {
+                    books.Remove(item);
+                }
+                else
+                {
+                    NotFound();
+                }
+            }
+
+            _serialization.Serialize(books, _path);
         }
     }
 }
