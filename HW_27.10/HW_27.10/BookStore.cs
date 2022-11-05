@@ -7,9 +7,18 @@ using System.Threading.Tasks;
 
 namespace HW_27._10
 {
-    public class Serialization : ISerialization
+    public class BookStore : IBookStore
     {
-        public void Serialize(List<Book> books, string path)
+        public List<Book> GetBooks(string path)
+        {
+            using (StreamReader streamReader = new StreamReader(path))
+            {
+                var json = streamReader.ReadToEnd();
+                return JsonConvert.DeserializeObject<List<Book>>(json);
+            }
+        }
+
+        public void SaveBooks(List<Book> books, string path)
         {
             using (StreamWriter streamWriter = new StreamWriter(path))
             {

@@ -31,8 +31,7 @@ namespace HW_27._10
                 config.Title = "HoMeWoRk";
             });
 
-            services.AddScoped<ISerialization, Serialization>();
-            services.AddScoped<IDeserialization, Deserialization>();
+            services.AddScoped<IBookStore, BookStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

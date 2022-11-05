@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace HW_27._10
 {
-    public interface IDeserialization
+    public interface IBookStore
     {
-        public List<Book> Deserialize(string path);
+        List<Book> GetBooks(string path);
+        void SaveBooks(List<Book> books, string path);
     }
 }

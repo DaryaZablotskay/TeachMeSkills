@@ -14,13 +14,11 @@ namespace HW_27._10.Controllers
     public class Controller : ControllerBase
     {
         private readonly IConfiguration _config;
-        private readonly ISerialization _serialization;
-        private readonly IDeserialization _deserialization;
+        private readonly IBookStore _bookStore;
         public readonly string _path;
-        public Controller(IConfiguration config, ISerialization serialization, IDeserialization deserialization)
+        public Controller(IConfiguration config, IBookStore bookStore)
         {
-            _deserialization = deserialization;
-            _serialization = serialization;
+            _bookStore = bookStore;
             _config = config;
             _path = _config.GetValue<string>("dataFilePath");
         }
@@ -28,7 +26,7 @@ namespace HW_27._10.Controllers
         [HttpGet("all")]
         public ActionResult<List<Book>> GetAll()
         {
-            var books = _deserialization.Deserialize(_path);
+            var books = _bookStore.GetBooks(_path);
             if (books == null)
             {
                 return NotFound();
@@ -42,7 +40,7 @@ namespace HW_27._10.Controllers
         [HttpGet("{id:guid}")]
         public ActionResult<Book> GetOne([FromRoute] Guid id)
         {
-            var books = _deserialization.Deserialize(_path);
+            var books = _bookStore.GetBooks(_path);
             foreach (var item in books)
             {
                 if (id == item.Id)
@@ -65,15 +63,15 @@ namespace HW_27._10.Controllers
                 Id = Guid.NewGuid()
             };
 
-            var books = _deserialization.Deserialize(_path);
+            var books = _bookStore.GetBooks(_path);
             books.Add(newBook);
-            _serialization.Serialize(books, _path);
+            _bookStore.SaveBooks(books, _path);
         }
 
         [HttpPut("{id:guid}")]
         public void Put([FromBody] BookDTO bookDto, [FromRoute] Guid id)
         {
-            var books = _deserialization.Deserialize(_path);
+            var books = _bookStore.GetBooks(_path);
             foreach (var item in books)
             {
                 if (item.Id == id)
@@ -85,13 +83,13 @@ namespace HW_27._10.Controllers
                 }
             }
 
-            _serialization.Serialize(books, _path);
+            _bookStore.SaveBooks(books, _path);
         }
 
         [HttpDelete("{id:guid}")]
         public void Delete([FromRoute] Guid id)
         {
-            var books = _deserialization.Deserialize(_path);
+            var books = _bookStore.GetBooks(_path);
             foreach (var item in books.ToList())
             {
                 if (item.Id == id)
@@ -104,7 +102,7 @@ namespace HW_27._10.Controllers
                 }
             }
 
-            _serialization.Serialize(books, _path);
+            _bookStore.SaveBooks(books, _path);
         }
     }
 }
