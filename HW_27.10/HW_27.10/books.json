@@ -1,0 +1,30 @@
+[
+  {
+    "Name": "Twilight 1",
+    "Pages": 416,
+    "Author": "Stephenie Meyer",
+    "Popularity": true,
+    "Id": "f09e8724-fcbb-4451-8211-ec577d47e406"
+  },
+  {
+    "Name": "The Hobbit, or There and Back Again",
+    "Pages": 310,
+    "Author": "John Ronald Reuel Tolkien",
+    "Popularity": true,
+    "Id": "9807d8dd-1e92-4d00-99f0-d027eddfc348"
+  },
+  {
+    "Name": "Harry Potter and the Sorcerer's Stone",
+    "Pages": 223,
+    "Author": "Joanne Rowling",
+    "Popularity": true,
+    "Id": "5cc19be6-b796-4be7-8bc7-48fe1b80e297"
+  },
+  {
+    "Name": "The Hunger Games 1",
+    "Pages": 480,
+    "Author": "Suzanne Collins",
+    "Popularity": true,
+    "Id": "7d013c3b-362d-474e-912c-848411795508"
+  }
+]
