@@ -17,15 +17,16 @@ namespace Asynchronous
             Sauce sauce = await preparingSauce;
             var cookingPastaTask = CookPasta(sauce, token);
             var warmingCutletTask = WarmCutlet(token);
+
             Pasta pasta = await cookingPastaTask;
             WarmedCutlet cutlet = await warmingCutletTask;
+
             Eat(cutlet,pasta);
 
             var makingTeaTask = MakeTea();
             var washingUpTask = WashUp(token);
 
-            Task[] tasks = new Task[] { makingTeaTask, washingUpTask };
-            Task.WaitAll(tasks);
+            await Task.WhenAll(makingTeaTask, washingUpTask);
 
             Console.WriteLine("We have finished everything and are ready for bed!");
             WatchTikTok();
