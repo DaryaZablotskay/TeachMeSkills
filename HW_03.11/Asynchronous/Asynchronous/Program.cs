@@ -9,14 +9,11 @@ namespace Asynchronous
     {
         static async Task Main(string[] args)
         {
-            CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
-            CancellationToken token = cancelTokenSource.Token;
-
             ComeBackHome();
-            var preparingSauce = PrepareSauce(token);
+            var preparingSauce = PrepareSauce();
             Sauce sauce = await preparingSauce;
-            var cookingPastaTask = CookPasta(sauce, token);
-            var warmingCutletTask = WarmCutlet(token);
+            var cookingPastaTask = CookPasta(sauce);
+            var warmingCutletTask = WarmCutlet();
 
             Pasta pasta = await cookingPastaTask;
             WarmedCutlet cutlet = await warmingCutletTask;
@@ -24,7 +21,7 @@ namespace Asynchronous
             Eat(cutlet,pasta);
 
             var makingTeaTask = MakeTea();
-            var washingUpTask = WashUp(token);
+            var washingUpTask = WashUp();
 
             await Task.WhenAll(makingTeaTask, washingUpTask);
 
@@ -38,7 +35,7 @@ namespace Asynchronous
             Console.WriteLine("Come home after the course");
         }
 
-        public static async Task<Sauce> PrepareSauce(CancellationToken cancellationToken)
+        public static async Task<Sauce> PrepareSauce()
         {
             Console.WriteLine("Chop the ingredients");
             Console.WriteLine("Put ingredients in the mixer");
@@ -50,7 +47,7 @@ namespace Asynchronous
             return new Sauce("cheese sause");
         }
 
-        public static async Task<Pasta> CookPasta(Sauce sause, CancellationToken cancellationToken)
+        public static async Task<Pasta> CookPasta(Sauce sause)
         {
             Console.WriteLine("Paur water in pan");
             Console.WriteLine("Put the pan with water on the stove");
@@ -67,7 +64,7 @@ namespace Asynchronous
             return new Pasta();
         }
 
-        public static async Task<WarmedCutlet> WarmCutlet(CancellationToken cancellationToken)
+        public static async Task<WarmedCutlet> WarmCutlet()
         {
             Console.WriteLine("Get the cutlet from the refrigerator");
             Console.WriteLine("Put it in the microwave");
@@ -97,7 +94,7 @@ namespace Asynchronous
             Console.WriteLine("Drink tea");
         }
 
-        public static async Task WashUp(CancellationToken cancellationToken)
+        public static async Task WashUp()
         {
             Console.WriteLine("Turn on tap in bath");
 
