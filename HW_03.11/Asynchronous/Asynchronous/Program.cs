@@ -10,8 +10,7 @@ namespace Asynchronous
         static async Task Main(string[] args)
         {
             ComeBackHome();
-            var preparingSauce = PrepareSauce();
-            Sauce sauce = await preparingSauce;
+            Sauce sauce = await PrepareSauce();
             var cookingPastaTask = CookPasta(sauce);
             var warmingCutletTask = WarmCutlet();
 
