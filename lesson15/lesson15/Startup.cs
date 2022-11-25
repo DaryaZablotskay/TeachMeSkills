@@ -36,6 +36,8 @@ namespace lesson15
             //services.AddScoped<IA, A>();
             //services.AddScoped<IB, B>();
             //services.AddScoped<IC, C>();
+
+            services.Configure<ComplexSettings>(Configuration.GetSection(ComplexSettings.path));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

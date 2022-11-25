@@ -7,7 +7,7 @@ namespace HW_27._10
 {
     public interface IBookStore
     {
-        List<Book> GetBooks(string path);
-        void SaveBooks(List<Book> books, string path);
+        Task<List<Book>> GetBooksAsync(string path);
+        Task SaveBooksAsync(List<Book> books, string path);
     }
 }

@@ -9,21 +9,21 @@ namespace HW_27._10
 {
     public class BookStore : IBookStore
     {
-        public List<Book> GetBooks(string path)
+        public async Task<List<Book>> GetBooksAsync(string path)
         {
             using (StreamReader streamReader = new StreamReader(path))
             {
-                var json = streamReader.ReadToEnd();
-                return JsonConvert.DeserializeObject<List<Book>>(json);
+                var json = await streamReader.ReadToEndAsync();
+                return await JsonConvert.DeserializeObjectAsync<List<Book>>(json);
             }
         }
 
-        public void SaveBooks(List<Book> books, string path)
+        public async Task SaveBooksAsync(List<Book> books, string path)
         {
             using (StreamWriter streamWriter = new StreamWriter(path))
             {
-                var json = JsonConvert.SerializeObject(books, Formatting.Indented);
-                streamWriter.WriteLine(json);
+                var json = await JsonConvert.SerializeObjectAsync(books, Formatting.Indented);
+                await streamWriter.WriteLineAsync(json);
             }
         }
     }

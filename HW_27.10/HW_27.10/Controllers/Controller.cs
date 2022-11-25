@@ -24,10 +24,10 @@ namespace HW_27._10.Controllers
         }
 
         [HttpGet("all")]
-        public ActionResult<List<Book>> GetAll()
+        public async Task<ActionResult<List<Book>>> GetAll()
         {
-            var books = _bookStore.GetBooks(_path);
-            if (books == null)
+            var books = await _bookStore.GetBooksAsync(_path);
+            if (books is null)
             {
                 return NotFound();
             }
@@ -38,9 +38,9 @@ namespace HW_27._10.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        public ActionResult<Book> GetOne([FromRoute] Guid id)
+        public async Task<ActionResult<Book>> GetOne([FromRoute] Guid id)
         {
-            var books = _bookStore.GetBooks(_path);
+            var books = await _bookStore.GetBooksAsync(_path);
             foreach (var item in books)
             {
                 if (id == item.Id)
@@ -52,7 +52,7 @@ namespace HW_27._10.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] BookDTO bookDto)
+        public async Task Post([FromBody] BookDTO bookDto)
         {
             var newBook = new Book()
             {
@@ -63,15 +63,15 @@ namespace HW_27._10.Controllers
                 Id = Guid.NewGuid()
             };
 
-            var books = _bookStore.GetBooks(_path);
+            var books = await _bookStore.GetBooksAsync(_path);
             books.Add(newBook);
-            _bookStore.SaveBooks(books, _path);
+            await _bookStore.SaveBooksAsync(books, _path);
         }
 
         [HttpPut("{id:guid}")]
-        public void Put([FromBody] BookDTO bookDto, [FromRoute] Guid id)
+        public async Task Put([FromBody] BookDTO bookDto, [FromRoute] Guid id)
         {
-            var books = _bookStore.GetBooks(_path);
+            var books = await _bookStore.GetBooksAsync(_path);
             foreach (var item in books)
             {
                 if (item.Id == id)
@@ -83,13 +83,13 @@ namespace HW_27._10.Controllers
                 }
             }
 
-            _bookStore.SaveBooks(books, _path);
+            await _bookStore.SaveBooksAsync(books, _path);
         }
 
         [HttpDelete("{id:guid}")]
-        public void Delete([FromRoute] Guid id)
+        public async Task Delete([FromRoute] Guid id)
         {
-            var books = _bookStore.GetBooks(_path);
+            var books = await _bookStore.GetBooksAsync(_path);
             foreach (var item in books.ToList())
             {
                 if (item.Id == id)
@@ -102,7 +102,7 @@ namespace HW_27._10.Controllers
                 }
             }
 
-            _bookStore.SaveBooks(books, _path);
+            await _bookStore.SaveBooksAsync(books, _path);
         }
     }
 }
