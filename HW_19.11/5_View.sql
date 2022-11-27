@@ -10,4 +10,4 @@ left join UserBooks usb on usb.UserId=us.Id
 left join Books b on b.Id=usb.BookId
 left join Authors aut on aut.Id=b.AuthorId
 
-select * from UserInfo
+--select * from UserInfo

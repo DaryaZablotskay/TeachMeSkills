@@ -9,9 +9,7 @@ values  ('61c5c0c5-a1ba-4d6b-9244-e79ab8192fd4', 'Dasha', 'Zablotskaya', 'DashZa
 		('bc433f65-13a8-40a0-9f16-8975c309a7c6', 'Masha', 'Ivanova', 'MasIv@mail.com', '1982-11-21', 'Minsk, Timirazeva, 4'),
 		('b52a3a18-b7b0-4dfa-961b-550582c74230', 'Vlad', 'Zablotskiy', 'VladZablokskiy@gmail.com', '1997-6-27', 'Georgia, Batumi')
 
---delete from Users
---dbcc checkident('Users', reseed, 0)
-select * from Users
+--select * from Users
 
 insert into Authors
 values  ('be6d421a-53ff-4b7a-a851-3e6a7cb46506', 'Ivan', 'Shamyakin', 'Belarus', '1921-01-30'),
@@ -22,7 +20,7 @@ values  ('be6d421a-53ff-4b7a-a851-3e6a7cb46506', 'Ivan', 'Shamyakin', 'Belarus',
 		('393f9869-8b9d-4c7c-aef1-0115d48700d2', 'John', 'Tolkien', 'South Africa', '1892-01-03'),
 		('d82087c3-64fb-4b57-806c-8665b72629fb', 'Nikolay', 'Gogol', 'Ukraine', '1809-03-20')
 
-select * from Authors
+--select * from Authors
 
 insert into Books
 values  ('7511e36e-c182-4682-bd85-6221ef3d2f32', 'Heart in the palm of your hand', 
@@ -42,7 +40,7 @@ values  ('7511e36e-c182-4682-bd85-6221ef3d2f32', 'Heart in the palm of your hand
 		('65b69ec7-e51f-4204-bd30-ebba83d00d75', 'Lord of the Rings: The Fellowship of The Ring', 
 			(select Id from Authors where FirstName='John' and LastName='Tolkien'), 1954)
 
-select * from Books		
+--select * from Books
 
 insert into UserBooks (Id, UserId, BookId)
 values  ('054cdc5b-bc44-43e3-80dc-61c332edaff9',
@@ -70,4 +68,4 @@ values  ('054cdc5b-bc44-43e3-80dc-61c332edaff9',
 			(select Id from Books where Name='Jane Eyre')
 		)
 
-select * from UserBooks
+--select * from UserBooks
