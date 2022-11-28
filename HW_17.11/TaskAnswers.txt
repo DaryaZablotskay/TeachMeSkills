@@ -1,0 +1,41 @@
+1. 37
+2. 78
+3. 14
+4. 13
+5. 40
+6. 201
+7. 326
+8. 6
+
+9. 
+select u.Name,Count(p.Id) as [number of students] from Persons p
+join PersonsStudySubjects pss on p.Id = pss.StudentId
+join StudySubjects ss on ss.Id = pss.SubjectId
+join Universities u on u.Id = ss.UniversityId
+where p.Age>30
+group by u.Name
+
+10. 
+select u.Name,avg(p.Age) as [average age of people] from Persons p
+join PersonsStudySubjects pss on p.Id = pss.StudentId
+join StudySubjects ss on ss.Id = pss.SubjectId
+join Universities u on u.Id = ss.UniversityId
+group by u.Name
+
+11.
+select u.Name, a.City,Count(p.Name) as [number of students] from Persons p
+join PersonsStudySubjects pss on pss.StudentId = p.Id
+join Addresses a on a.Id = p.AddressId
+join StudySubjects ss on ss.Id = pss.SubjectId
+join Universities u on u.Id = ss.UniversityId
+where p.Id != ss.ProfessorId
+group by a.City, u.Name
+ 
+12. 2
+
+13. 
+select a.City, avg(p.Age) as [average age of students] from Persons p
+join PersonsStudySubjects pss on pss.StudentId = p.Id
+join Addresses a on a.Id = p.AddressId
+group by City
+
