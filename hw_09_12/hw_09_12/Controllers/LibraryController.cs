@@ -19,36 +19,49 @@ namespace hw_09_12.Controllers
         }
 
 
-        [HttpPost("user")]
-        public async Task FillUser()
+        [HttpPost("fill")]
+        public async Task FillModels()
         {
             var userBook = new UserBook
             {
                 UserBookId = Guid.NewGuid(),
                 Book = new Book
                 {
-                    Name = "Harry Potter and the Sorcerer's Stone",
-                    Year = 1997,
+                    Name = "Me Before You",
+                    Year = 2012,
                     BookId = Guid.NewGuid(),
                     Author = new Author
                     {
                         AuthorId = Guid.NewGuid(),
-                        BirthDate = new DateTime(1965, 7, 31),
+                        BirthDate = new DateTime(1969, 8, 4),
                         Country = "Great Britain",
-                        FirstName = "Joanne",
-                        LastName = "Rowling"
+                        FirstName = "Jojo",
+                        LastName = "Moyes"
                     }
                 },
                 User = new User
                 {
                     UserId = Guid.NewGuid(),
-                    FirstName = "Ilya",
-                    LastName = "Dobrinskiy",
-                    Email = "IlDob@gmail.com",
-                    BirthDate = new DateTime(2002, 5, 18)
+                    FirstName = "Dima",
+                    LastName = "Takarevskiy",
+                    Email = "DiTak@gmail.com",
+                    BirthDate = new DateTime(2003,6,6)
                 }
             };
             await _library.FillUser(userBook);
+        }
+
+        [HttpGet("data")]
+        public IEnumerable<TakeBooksDto> GetBooks()
+        {
+            var books = _library.TakeBooks();
+            return books;
+        }
+
+        [HttpDelete("delete")]
+        public IEnumerable<string> DeleteUsers()
+        {
+
         }
     }
 }

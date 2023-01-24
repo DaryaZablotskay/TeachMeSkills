@@ -9,5 +9,7 @@ namespace hw_09_12
     public interface ILibraryService
     {
         Task FillUser(UserBook user);
+        IEnumerable<TakeBooksDto> TakeBooks();
+        IEnumerable<string> Delete();
     }
 }

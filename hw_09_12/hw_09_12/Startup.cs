@@ -27,6 +27,7 @@ namespace hw_09_12
         {
             services.AddControllers();
             services.AddDbContext<LibraryContext>();
+            services.AddScoped<ILibraryService, LibraryService>();
             services.AddOpenApiDocument(config =>
             {
                 config.Title = "Homework";
