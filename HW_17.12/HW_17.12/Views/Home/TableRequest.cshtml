@@ -1,0 +1,29 @@
+﻿@model IEnumerable<RequestDto>
+@{
+    ViewData["Title"] = "TableRequest Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Request</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Topic</th>
+                <th scope="col">Department</th>
+                <th scope="col">Specialist</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model)
+            {
+                <tr>
+                    <td>@request.Topic</td>
+                    <td>@request.DepartmentName</td>
+                    <td>@request.SpecialistName</td>
+                    <td>@request.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
