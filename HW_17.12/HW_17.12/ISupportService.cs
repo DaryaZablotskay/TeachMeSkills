@@ -9,5 +9,6 @@ namespace HW_17._12
     public interface ISupportService
     {
         Task Add(Department department);
+        IEnumerable<RequestDto> GetRequests();
     }
 }

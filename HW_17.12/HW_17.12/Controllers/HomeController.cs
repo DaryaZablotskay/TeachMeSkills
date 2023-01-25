@@ -21,7 +21,7 @@ namespace HW_17._12.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpGet("fill-models")]
         public async Task<IActionResult> Add()
         {
             var department1 = new Department()
@@ -189,6 +189,12 @@ namespace HW_17._12.Controllers
             await _supportService.Add(department3);
 
             return View();
+        }
+
+        public IActionResult TableRequest()
+        {
+            var table = _supportService.GetRequests();
+            return View(table);
         }
     }
 }

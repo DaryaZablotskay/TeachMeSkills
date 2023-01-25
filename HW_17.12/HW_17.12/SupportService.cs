@@ -19,5 +19,21 @@ namespace HW_17._12
             await _supportContext.Departments.AddAsync(department);
             await _supportContext.SaveChangesAsync();
         }
+
+        public IEnumerable<RequestDto> GetRequests()
+        {
+            var requestTable = (from request in _supportContext.SupportRequests
+                                join specialist in _supportContext.SupportSpecialists on request.SupportSpecialistId equals specialist.SupportSpecialistId
+                                join department in _supportContext.Departments on specialist.DepartmentId equals department.DepartmentId
+                                select new RequestDto
+                                {
+                                    Topic = request.Topic,
+                                    Description = request.Description,
+                                    DepartmentName = department.Name,
+                                    SpecialistName = specialist.Name,
+                                    Status = request.Status
+                                }).ToList();
+            return requestTable;
+        }
     }
 }
