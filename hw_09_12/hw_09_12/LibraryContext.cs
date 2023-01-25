@@ -23,17 +23,20 @@ namespace hw_09_12
             modelBuilder.Entity<Book>()
                 .HasOne(x => x.Author)
                 .WithMany(y => y.Books)
-                .HasForeignKey(x => x.AuthorId);
+                .HasForeignKey(x => x.AuthorId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<UserBook>()
                 .HasOne(x => x.User)
                 .WithMany(y => y.UserBooks)
-                .HasForeignKey(x => x.UserId);
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<UserBook>()
                .HasOne(x => x.Book)
                .WithMany(y => y.UserBooks)
-               .HasForeignKey(x => x.BookId);
+               .HasForeignKey(x => x.BookId)
+               .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<UserBook>()
                 .HasIndex(x => new { x.BookId, x.UserId }).IsUnique();

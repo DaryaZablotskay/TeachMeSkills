@@ -38,17 +38,29 @@ namespace hw_09_12
             return bookTake;
         }
 
-        public IEnumerable<string> Delete()
+        public async Task<IEnumerable<string>> Delete()
         {
             var users = (from userBook in _context.UserBooks
                          join user in _context.Users on userBook.UserId equals user.UserId
                          select new ModelForDeleteDto
                          {
+                             UserId = user.UserId,
                              BookId = userBook.BookId,
                              UserName = user.FirstName + " " + user.LastName
                          }
                          ).Where(x => x.BookId == null).ToList();
 
+            var deleteUsers = _context.UserBooks.Where(x => x.BookId == null).ToArray();
+            _context.RemoveRange(deleteUsers);
+            await _context.SaveChangesAsync();
+
+            var names = new List<string>();
+            foreach(var user in users)
+            {
+                names.Add(user.UserName);
+            }
+
+            return names;
         }
     }
 }

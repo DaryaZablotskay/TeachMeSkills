@@ -10,6 +10,6 @@ namespace hw_09_12
     {
         Task FillUser(UserBook user);
         IEnumerable<TakeBooksDto> TakeBooks();
-        IEnumerable<string> Delete();
+        Task<IEnumerable<string>> Delete();
     }
 }

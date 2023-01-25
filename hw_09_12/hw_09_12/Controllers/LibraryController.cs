@@ -19,26 +19,12 @@ namespace hw_09_12.Controllers
         }
 
 
-        [HttpPost("fill")]
+        [HttpPost]
         public async Task FillModels()
         {
             var userBook = new UserBook
             {
                 UserBookId = Guid.NewGuid(),
-                Book = new Book
-                {
-                    Name = "Me Before You",
-                    Year = 2012,
-                    BookId = Guid.NewGuid(),
-                    Author = new Author
-                    {
-                        AuthorId = Guid.NewGuid(),
-                        BirthDate = new DateTime(1969, 8, 4),
-                        Country = "Great Britain",
-                        FirstName = "Jojo",
-                        LastName = "Moyes"
-                    }
-                },
                 User = new User
                 {
                     UserId = Guid.NewGuid(),
@@ -51,17 +37,18 @@ namespace hw_09_12.Controllers
             await _library.FillUser(userBook);
         }
 
-        [HttpGet("data")]
+        [HttpGet]
         public IEnumerable<TakeBooksDto> GetBooks()
         {
             var books = _library.TakeBooks();
             return books;
         }
 
-        [HttpDelete("delete")]
-        public IEnumerable<string> DeleteUsers()
+        [HttpDelete]
+        public async Task<IEnumerable<string>> DeleteUsers()
         {
-
+            var names = await _library.Delete();
+            return names;
         }
     }
 }
